@@ -4,6 +4,7 @@ import cl.awakelab.miprimerspring.com.example.cl.proyecto.entity.entity.Alumno;
 import cl.awakelab.miprimerspring.service.IAlumnoService;
 import cl.awakelab.miprimerspring.service.ICursoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,18 +14,17 @@ import java.util.List;
 public class AlumnoRestController {
     @Autowired
     IAlumnoService objAlumnoService;
-    @Autowired
-    ICursoService objCursoService;
+   @Autowired
+   ICursoService objCursoService;
 
     @PostMapping
     public Alumno crearAlumno (@RequestBody Alumno alumno){
-        objAlumnoService.crearAlumno(alumno);
-        return alumno;
+        return objAlumnoService.crearAlumno(alumno);
     }
 
     @PutMapping("/{id}")
-    public Alumno actualizarAlumno(@PathVariable int id,@RequestBody Alumno alumno){
-       return objAlumnoService.actualizarAlumno(id,alumno) ;
+    public Alumno actualizarAlumno(@RequestBody Alumno alumno){
+       return objAlumnoService.actualizarAlumno(alumno) ;
     }
 
     @GetMapping
@@ -38,9 +38,9 @@ public class AlumnoRestController {
     }
 
     @DeleteMapping("/{id}")
-    public boolean eliminarAlumno(@PathVariable int id){
+    public ResponseEntity<String> eliminarAlumno(@PathVariable int id){
         objAlumnoService.eliminarAlumno(id);
-        return true;
+        return ResponseEntity.ok("Alumno eliminado exitosamente");
     }
 
 }

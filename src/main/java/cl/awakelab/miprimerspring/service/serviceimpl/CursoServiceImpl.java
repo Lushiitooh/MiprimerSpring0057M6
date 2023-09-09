@@ -6,7 +6,6 @@ import cl.awakelab.miprimerspring.service.ICursoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service("CursoServiceImpl")
@@ -17,37 +16,39 @@ public class CursoServiceImpl implements ICursoService {
 
     @Override
     public Curso crearCurso(Curso cursoCreado) {
-        Curso nuevoCurso = new Curso();
-        nuevoCurso= objCursoRepo.save (cursoCreado);
+        Curso nuevoCurso = objCursoRepo.save (cursoCreado);
         return nuevoCurso;
 
     }
 
     @Override
     public Curso actualizarCurso(Curso curso) {
-        Curso cursoActualizado = new Curso();
-        cursoActualizado = objCursoRepo.findById(curso.getId()).orElse(null);
-        cursoActualizado.setNombreCurso(curso.getNombreCurso());;
-        cursoActualizado.setListaProfesores(curso.getListaProfesores());
-        cursoActualizado.setListaAlumnos(curso.getListaAlumnos());
-        return cursoActualizado;
+        return objCursoRepo.save(curso);
+    }
+
+    @Override
+    public Curso actualizarCurso(int id, Curso cursoActualizado) {
+        return null;
     }
 
     @Override
     public List<Curso> listarCursos() {
-        List <Curso> listaAMostrarCursos =new ArrayList<>();
-        listaAMostrarCursos = objCursoRepo.findAll();
+        List <Curso> listaAMostrarCursos = objCursoRepo.findAll();
         return listaAMostrarCursos;
     }
 
     @Override
     public Curso listarCursosId(int id) {
+
         return objCursoRepo.findById(id).orElse(null);
     }
 
     @Override
-    public boolean eliminarCurso(int id) {
-        objCursoRepo.deleteById(id);
-        return true;
+    public void eliminarCurso(int id) {
+        if (objCursoRepo.existsById(id)) {
+            objCursoRepo.deleteById(id);
+        } else {
+            System.out.println("El curso con ID " + id + " no existe.");
+        }
     }
 }

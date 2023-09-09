@@ -6,13 +6,28 @@ import java.util.List;
 
 public interface IProfesorService {
 
-    public Profesor crearProfesor(Profesor profesorCreado);
+    public Profesor crearProfesor(Profesor profesor);
 
     public Profesor actualizarProfesor ( Profesor profesor);
+
+    Profesor actualizarProfesor(int id, Profesor profesorActualizado);
 
     public List<Profesor> listarProfesores();
 
     public Profesor listarProfesoresId(int id);
 
-    public boolean eliminarProfesor(int id);
+    public void eliminarProfesor(int id);
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

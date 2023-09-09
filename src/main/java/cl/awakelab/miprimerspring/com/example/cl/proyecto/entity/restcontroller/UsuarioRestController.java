@@ -20,7 +20,7 @@ public class UsuarioRestController {
         return objUsuarioService.crearUsuario(usuario);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public Usuario actualizarUsuario(@RequestBody Usuario usuario){
         return objUsuarioService.actualizarUsuario(usuario);
     }

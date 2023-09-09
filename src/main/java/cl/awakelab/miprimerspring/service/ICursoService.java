@@ -6,13 +6,15 @@ import java.util.List;
 
 public interface ICursoService {
 
-    public Curso crearCurso(Curso cursoCreado);
+    public Curso crearCurso(Curso curso);
 
     public Curso actualizarCurso (Curso curso);
+
+    Curso actualizarCurso(int id, Curso cursoActualizado);
 
     public List<Curso> listarCursos();
 
     public Curso listarCursosId(int id);
 
-    public boolean eliminarCurso(int id);
+    public void eliminarCurso(int id);
 }

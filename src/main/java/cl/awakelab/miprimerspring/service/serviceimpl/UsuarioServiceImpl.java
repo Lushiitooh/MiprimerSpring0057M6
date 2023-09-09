@@ -16,41 +16,42 @@ public class UsuarioServiceImpl implements IUsuarioService {
     IUsuarioRepository objUsuarioRepo;
 
     @Override
-    public Usuario crearUsuario(Usuario usuarioCreado){
-        Usuario nuevoUsuario= new Usuario();
-        nuevoUsuario= objUsuarioRepo.save (usuarioCreado);
+    public Usuario crearUsuario(Usuario usuarioCreado) {
+        Usuario nuevoUsuario = objUsuarioRepo.save(usuarioCreado);
         return nuevoUsuario;
-
     }
 
     @Override
     public Usuario actualizarUsuario(Usuario usuario) {
-        Usuario usuarioActualizado = new Usuario();
-        usuarioActualizado = objUsuarioRepo.findById(usuario.getId()).orElse(null);
-        usuarioActualizado.setNombre(usuario.getNombre());
-        usuarioActualizado.setRol(usuario.getRol());
-        usuarioActualizado.setContrasena(usuario.getContrasena());
-        objUsuarioRepo.save(usuarioActualizado);
-        return usuarioActualizado;
+        // Implementa la lógica para actualizar el usuario aquí
+        // Por ejemplo, puedes usar objUsuarioRepo.save(usuario) para actualizarlo en la base de datos
+        return objUsuarioRepo.save(usuario);
     }
 
+    @Override
+    public Usuario actualizarUsuario(int id, Usuario usuarioActualizado) {
+        return null;
+    }
 
     @Override
     public List<Usuario> listarUsuarios() {
-        List<Usuario> listaAMostrarUsuarios =new ArrayList<>();
-        listaAMostrarUsuarios= objUsuarioRepo.findAll();
+        List<Usuario> listaAMostrarUsuarios = objUsuarioRepo.findAll();
         return listaAMostrarUsuarios;
-
     }
 
     @Override
     public Usuario listarUsuarioId(int id) {
+
         return objUsuarioRepo.findById(id).orElse(null);
     }
 
     @Override
     public void eliminarUsuario(int id) {
+        if (objUsuarioRepo.existsById(id)) {
+            objUsuarioRepo.deleteById(id);
+        } else {
+            System.out.println("El usuario con ID " + id + " no existe.");
+        }
     }
-
-
 }
+

@@ -2,8 +2,11 @@ package cl.awakelab.miprimerspring.com.example.cl.proyecto.entity.restcontroller
 
 
 import cl.awakelab.miprimerspring.com.example.cl.proyecto.entity.entity.Curso;
+import cl.awakelab.miprimerspring.com.example.cl.proyecto.entity.entity.Profesor;
 import cl.awakelab.miprimerspring.service.ICursoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,28 +18,31 @@ public class CursoRestController {
     ICursoService objCursoService;
 
     @PostMapping
-    public Curso crearCurso(@RequestBody Curso curso){
+    public Curso crearCurso (@RequestBody Curso curso){
         return objCursoService.crearCurso(curso);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public Curso actualizarCurso(@RequestBody Curso curso){
         return objCursoService.actualizarCurso(curso);
     }
 
     @GetMapping
-    public List <Curso> listarCursos (){
+    public List<Curso> listarCursos(){
+
         return objCursoService.listarCursos();
     }
 
     @GetMapping("/{id}")
     public Curso listarCursosId(@PathVariable int id){
+
         return objCursoService.listarCursosId(id);
     }
 
     @DeleteMapping("/{id}")
-    public boolean eliminarCurso (@PathVariable int id){
+    public ResponseEntity<String> eliminarCurso(@PathVariable int id){
         objCursoService.eliminarCurso(id);
-        return true;
+        return ResponseEntity.ok("Curso eliminado exitosamente");
     }
+
 }
