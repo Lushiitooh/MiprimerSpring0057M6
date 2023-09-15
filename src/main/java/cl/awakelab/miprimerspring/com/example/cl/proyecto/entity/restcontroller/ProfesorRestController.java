@@ -24,6 +24,8 @@ public class ProfesorRestController {
         return objProfesorService.actualizarProfesor(profesor);
     }
 
+
+
     @GetMapping
     public List<Profesor> listarProfesores(){
 
@@ -36,10 +38,13 @@ public class ProfesorRestController {
         return objProfesorService.listarProfesoresId(id);
     }
 
+
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminarProfesor(@PathVariable int id){
         objProfesorService.eliminarProfesor(id);
         return ResponseEntity.ok("Profesor eliminado exitosamente");
     }
+
 
 }

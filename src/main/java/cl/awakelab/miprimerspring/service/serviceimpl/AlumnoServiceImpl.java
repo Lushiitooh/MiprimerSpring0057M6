@@ -2,18 +2,19 @@ package cl.awakelab.miprimerspring.service.serviceimpl;
 
 import cl.awakelab.miprimerspring.com.example.cl.proyecto.entity.entity.Alumno;
 import cl.awakelab.miprimerspring.com.example.cl.proyecto.entity.repository.IAlumnoRepository;
-import cl.awakelab.miprimerspring.com.example.cl.proyecto.entity.repository.ICursoRepository;
 import cl.awakelab.miprimerspring.service.IAlumnoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@Service("AlumnoServiceImpl")
+@Service("alumnoServiceImpl")
 public class AlumnoServiceImpl implements IAlumnoService {
 
     @Autowired
     IAlumnoRepository objAlumnoRepo;
+
 
     //@Autowired//
    // ICursoRepository objCursoRepo;//
@@ -25,20 +26,21 @@ public class AlumnoServiceImpl implements IAlumnoService {
     }
 
     @Override
-    public Alumno actualizarAlumno(Alumno alumno) {
-
-        return objAlumnoRepo.save(alumno);
-    }
-
-    @Override
     public Alumno actualizarAlumno(int id, Alumno alumnoActualizado) {
-        return null;
+        Alumno alumnoEncontrado = objAlumnoRepo.findById(id).orElse(null);
+        alumnoEncontrado.setNombres(alumnoActualizado.getNombres());
+        alumnoEncontrado.setApellido1(alumnoActualizado.getApellido1());
+        alumnoEncontrado.setApellido2(alumnoActualizado.getApellido2());
+        alumnoEncontrado.setCurso(alumnoActualizado.getCurso());
+        return objAlumnoRepo.save(alumnoEncontrado);
     }
+
 
     @Override
     public List<Alumno> listarAlumnos() {
-        List <Alumno> listaAMostrarAlumnos = objAlumnoRepo.findAll();
-        return listaAMostrarAlumnos;
+        List<Alumno> listarAlumnos = new ArrayList<Alumno>();
+        listarAlumnos = objAlumnoRepo.findAll();
+        return listarAlumnos;
     }
 
     @Override
@@ -56,7 +58,10 @@ public class AlumnoServiceImpl implements IAlumnoService {
         }
     }
 
-
+    @Override
+    public Alumno actualizarAlumno(Alumno alumno) {
+        return null;
+    }
 
 
 }

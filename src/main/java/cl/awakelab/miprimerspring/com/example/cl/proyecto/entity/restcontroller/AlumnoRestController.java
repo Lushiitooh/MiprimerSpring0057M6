@@ -10,35 +10,41 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/alumno)")
+@RequestMapping("/api/alumno")
 public class AlumnoRestController {
     @Autowired
     IAlumnoService objAlumnoService;
-   @Autowired
-   ICursoService objCursoService;
+
+    @Autowired
+    ICursoService objCursoService;
 
     @PostMapping
-    public Alumno crearAlumno (@RequestBody Alumno alumno){
+    public Alumno crearAlumno(@RequestBody Alumno alumno) {
+
         return objAlumnoService.crearAlumno(alumno);
     }
 
-    @PutMapping("/{id}")
-    public Alumno actualizarAlumno(@RequestBody Alumno alumno){
-       return objAlumnoService.actualizarAlumno(alumno) ;
-    }
-
-    @GetMapping
-    public List<Alumno> listarAlumnos(){
-        return objAlumnoService.listarAlumnos();
-    }
-
     @GetMapping("/{id}")
-    public Alumno listarAlumnosId(@PathVariable int id){
+    public Alumno listarAlumnosId(@PathVariable int id) {
+
         return objAlumnoService.listarAlumnosId(id);
     }
 
+    @PutMapping("/{id}")
+    public Alumno actualizarAlumno(@PathVariable int id, @RequestBody Alumno alumno) {
+        return objAlumnoService.actualizarAlumno(id, alumno);
+    }
+
+    @GetMapping
+    public List<Alumno> listarAlumnos() {
+
+        return objAlumnoService.listarAlumnos();
+    }
+
+
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> eliminarAlumno(@PathVariable int id){
+    public ResponseEntity<String> eliminarAlumno(@PathVariable int id) {
         objAlumnoService.eliminarAlumno(id);
         return ResponseEntity.ok("Alumno eliminado exitosamente");
     }

@@ -33,6 +33,16 @@
                    th:value="${profesor.apellido2}" required/>
         </div>
 
+        <div class="form-group">
+            <label for="listaCursos">Cursos Asignados</label>
+            <select class="form-control" id="listaCursos" name="listaCursos" multiple required>
+                <option th:each="curso : ${listaCursos}"
+                        th:value="${curso.id}"
+                        th:text="${curso.nombreCurso}"></option>
+            </select>
+        </div>
+
+
         <button type="submit" class="btn btn-primary">Guardar Cambios</button>
     </form>
 </section>

@@ -18,6 +18,7 @@
             <th>Nombres </th>
             <th>Apellido 1 </th>
             <th>Apellido 2</th>
+            <th>Cursos</th>
             <th>Acciones</th>
         </tr>
         </thead>
@@ -27,6 +28,12 @@
             <td th:text="${profesor.nombres}"></td>
             <td th:text="${profesor.apellido1}"></td>
             <td th:text="${profesor.apellido2}"></td>
+
+            <td>
+                <ul>
+                    <li th:each="curso: ${profesor.listaCursos}" th:text="${curso.nombreCurso}"></li>
+                </ul>
+            </td>
             <td>
                 <div class="btn-group">
                     <form th:action="@{'/profesor/actualizar/' + ${profesor.id}}" method="get">

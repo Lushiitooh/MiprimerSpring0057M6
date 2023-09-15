@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+import static jakarta.persistence.CascadeType.MERGE;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,10 +25,10 @@ public class Curso {
     private String nombreCurso;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "listaCursos")
+    @ManyToMany(mappedBy = "listaCursos", cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     private List<Profesor> listaProfesores;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "curso")
+    @OneToMany(mappedBy = "curso", cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     private List<Alumno> listaAlumnos;
 }

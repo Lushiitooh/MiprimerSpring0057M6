@@ -17,21 +17,17 @@
             <input type="text" class="form-control" id="nombreCurso" name="nombreCurso" required placeholder="Ingrese el nombre del curso">
         </div>
         <div>
-            <label for="profesores" class="form-label">Profesores:</label>
-            <select class="form-control" name="profesores" id="profesores" multiple>
-                <!-- Opciones para seleccionar profesores -->
-                <option value="1">Profesor 1</option>
-                <option value="2">Profesor 2</option>
-                <!-- Agrega más opciones según tus datos -->
+            <label for="nombres" class="form-label">Profesores:</label>
+            <select class="form-control" name="nombres" id="nombres" multiple>
+                <!-- Itera sobre la lista de profesores y genera las opciones -->
+                <option th:each="profesor : ${listaProfesores}" th:value="${profesor.id}" th:text="${profesor.nombres}"></option>
             </select>
         </div>
         <div>
             <label for="alumnos" class="form-label">Alumnos:</label>
             <select class="form-control" name="alumnos" id="alumnos" multiple>
-                <!-- Opciones para seleccionar alumnos -->
-                <option value="1">Alumno 1</option>
-                <option value="2">Alumno 2</option>
-                <!-- Agrega más opciones según tus datos -->
+                <!-- Itera sobre la lista de alumnos y genera las opciones -->
+                <option th:each="alumno : ${listaAlumnos}" th:value="${alumno.id}" th:text="${alumno.nombres}"></option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Crear Curso</button>
@@ -39,3 +35,4 @@
 </section>
 </body>
 </html>
+

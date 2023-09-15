@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="es">
 <head>
   <meta charset="UTF-8">
@@ -15,12 +16,26 @@
   <!-- Formulario de edición de usuario -->
   <form th:action="@{'/usuario/actualizar/' + ${usuario.id}}" method="post">
     <input type="hidden" th:name="id" th:value="${usuario.id}"/>
-    <input type="hidden" th:name="rol" th:value="${usuario.rol}"/>
+
+    <!-- Campo para el rol -->
+    <div class="form-group">
+      <label for="rol">Rol de Usuario</label>
+      <select class="form-control" id="rol" name="rol" required>
+        <option th:selected="${usuario.rol == 'Profesor'}" value="Profesor"> Profesor </option>
+        <option th:selected="${usuario.rol == 'Alumno'}" value="Alumno"> Alumno </option>
+        <option th:selected="${usuario.rol == 'Administrador'}" value="Administrador"> Administrador </option>
+      </select>
+    </div>
+
+
+    <!-- Campo para el nombre -->
     <div class="form-group">
       <label for="nombre">Nombre de Usuario</label>
       <input type="text" class="form-control" id="nombre" name="nombre"
              th:value="${usuario.nombre}" required/>
     </div>
+
+    <!-- Campo para la contraseña -->
     <div class="form-group">
       <label for="contrasena">Contraseña</label>
       <input type="password" class="form-control" id="contrasena" name="contrasena"
@@ -32,3 +47,4 @@
 </section>
 </body>
 </html>
+

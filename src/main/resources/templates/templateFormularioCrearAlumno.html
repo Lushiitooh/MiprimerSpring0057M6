@@ -4,31 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario crear alumno </title>
+    <title>Formulario crear alumno</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
 <body>
-<header th:incluide="~{../static/html/header.html}"> </header>
+<header th:include="~{../static/html/header.html}"></header>
 <section class="container">
-    <h2 class="text-success"><strong> crear alumno</strong></h2>
+    <h2 class="text-success"><strong>Crear alumno</strong></h2>
     <form th:action="@{/alumno/crearAlumno}" method="post">
         <div>
-            <label for="Nombres" class="form-label"> Nombres:</label>
-            <input type="text" class="form-control" id="Nombres" name="Nombres" required placeholder="ingrese sus nombres">
+            <label for="nombres" class="form-label">Nombres:</label>
+            <input type="text" class="form-control" id="nombres" name="nombres" required placeholder="Ingrese sus nombres">
         </div>
         <div>
-            <label for="apellido1" class="form-label"> Apellido 1</label>
-            <input type="text" class="form-control" id="apellido1" name="apellido1" required placeholder="ingrese su apellido1">
+            <label for="apellido1" class="form-label">Apellido 1:</label>
+            <input type="text" class="form-control" id="apellido1" name="apellido1" required placeholder="Ingrese su apellido 1">
         </div>
         <div>
-            <label for="apellido2" class="form-label"> Apellido 2</label>
-            <input type="text" class="form-control" id="apellido2" name="apellido2" required placeholder="ingrese su apellido2">
+            <label for="apellido2" class="form-label">Apellido 2:</label>
+            <input type="text" class="form-control" id="apellido2" name="apellido2" required placeholder="Ingrese su apellido 2">
         </div>
         <div>
-            <label for="rol" class="form-label"> Seleccione usuario:</label>
-            <select class="form-control" name="rol" id="rol" required>
-                <option value="Alumno">Alumno</option>
-
+            <label for="curso" class="form-label">Seleccione un curso:</label>
+            <select class="form-control" name="curso" id="curso" required>
+                <option th:each="curso : ${listaCursos}" th:value="${curso.id}" th:text="${curso.nombreCurso}"></option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Crear Alumno</button>

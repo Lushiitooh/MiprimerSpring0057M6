@@ -11,7 +11,7 @@
 <body>
 <header th:incluide="~{../static/html/header.html}"> </header>
 <section class="container">
-    <h2 class="text-success"><strong> crear profesor</strong></h2>
+    <h2 class="text-success"><strong> Crear profesor</strong></h2>
     <form th:action="@{/profesor/crearProfesor}" method="post">
         <div>
             <label for="nombres" class="form-label"> Nombres:</label>
@@ -25,12 +25,12 @@
             <label for="apellido2" class="form-label"> Apellido 2</label>
             <input type="text" class="form-control" id="apellido2" name="apellido2" required placeholder="ingrese su apellido2">
         </div>
-        <div>
-            <label for="rol" class="form-label"> Seleccione usuario:</label>
-            <select class="form-control" name="rol" id="rol" required>
-                <option value="Profesor">Profesor</option>
-                <option value="Alumno">Alumno</option>
-                <option value="Administrador">Administrador</option>
+        <div class="form-group">
+            <label for="listaCursos">Cursos Asignados</label>
+            <select class="form-control" id="listaCursos" name="listaCursos" multiple required>
+                <option th:each="curso : ${listaCursos}"
+                        th:value="${curso.id}"
+                        th:text="${curso.nombreCurso}"></option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Crear Profesor</button>

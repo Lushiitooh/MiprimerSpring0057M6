@@ -20,7 +20,7 @@ public class Profesor {
     @Column(name = "id", unique = true, nullable = false)
     private int id;
 
-    @Column (nullable = false, length = 75)
+    @Column(nullable = false, length = 75)
     private String nombres;
 
     @Column(length = 30)
@@ -29,9 +29,16 @@ public class Profesor {
     @Column(length = 30)
     private String apellido2;
 
-    @ManyToMany
+    //@ManyToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+ //   @JoinTable(name = "Curso_Profesor",
+         //  joinColumns = @JoinColumn(name = "profesor_id", nullable = false),
+          //  inverseJoinColumns = @JoinColumn(name = "curso_id", nullable = false)
+   // )
+  //  private List<Curso> listaCursos;//
+
+    @ManyToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     @JoinTable(name = "Curso_Profesor",
-                      joinColumns = @JoinColumn(name = "FK_ Profesor", nullable = false),
-                      inverseJoinColumns = @JoinColumn(name = "FK_ Curso", nullable = false))
+            joinColumns = @JoinColumn(name = "FK_Profesor", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "FK_Curso", nullable = false))
     private List<Curso> listaCursos;
 }
