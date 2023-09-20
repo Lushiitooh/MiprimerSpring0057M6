@@ -25,12 +25,10 @@
             <td th:text="${curso.id}"></td>
             <td th:text="${curso.nombreCurso}"></td>
             <td>
-            <ul>
-
-                <li th:each="profesor: ${curso.listaProfesores}" th:text="${profesor.nombres}"></li>
-            </ul>
+                <ul>
+                    <li th:each="profesor: ${curso.listaProfesores}" th:text="${profesor.nombres}"></li>
+                </ul>
             </td>
-
             <td>
                 <div class="btn-group">
                     <form th:action="@{'/curso/actualizar/' + ${curso.id}}" method="get">
@@ -52,7 +50,7 @@
                                 Estás seguro?
                             </div>
                             <div class="modal-footer">
-                                <form th:action="@{/curso/eliminar/{id}(id=${curso.id})}" method="post">
+                                <form th:action="@{/curso/eliminarCurso/{id}(id=${curso.id})}" method="post">
                                     <button class="btn btn-danger" type="submit">Eliminar</button>
                                 </form>
                             </div>
@@ -70,5 +68,4 @@
         crossorigin="anonymous"></script>
 </body>
 </html>
-
 

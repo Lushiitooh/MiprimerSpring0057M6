@@ -27,12 +27,17 @@ public class CursoController {
         return "templateListarCursos";
     }
 
-    @GetMapping("/crearCurso")
-    public String mostrarFormularioCrearCurso(Model model){
-        List<Profesor> listaProfesores = objCursoService.listarProfesores(); // Obtener la lista de profesores desde el servicio
-        List<Alumno> listaAlumnos = objCursoService.listarAlumnos(); // Obtener la lista de alumnos desde el servicio
-        model.addAttribute("listaProfesores", listaProfesores);
-        model.addAttribute("listaAlumnos", listaAlumnos);
+   // @GetMapping("/crearCurso")
+  //  public String mostrarFormularioCrearCurso(Model model){
+      //  List<Profesor> listaProfesores = objCursoService.listarProfesores(); // Obtener la lista de profesores desde el servicio
+      //  List<Alumno> listaAlumnos = objCursoService.listarAlumnos(); // Obtener la lista de alumnos desde el servicio
+      //  model.addAttribute("listaProfesores", listaProfesores);
+      //  model.addAttribute("listaAlumnos", listaAlumnos);
+      //  return "templateFormularioCrearCurso";
+   // }//
+
+    @GetMapping("/crearCurso")//Llama al formulario
+    public String mostrarFormularioCrearCurso(){
         return "templateFormularioCrearCurso";
     }
 
@@ -42,7 +47,7 @@ public class CursoController {
         return "redirect:/curso";
     }
 
-    @PostMapping("/eliminar/{id}")
+    @PostMapping("/eliminarCurso/{id}")
     public String eliminarCurso(@PathVariable int id){
         objCursoService.eliminarCurso(id);
         return "redirect:/curso";
